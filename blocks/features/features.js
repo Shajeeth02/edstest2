@@ -1,8 +1,10 @@
 /**
- * Features Block
+ * Features Block - 3 Column Grid
+ * Matches original HTML structure
  */
 export default function decorate(block) {
   const rows = [...block.children];
+  
   const features = [];
   let currentFeature = {};
   
@@ -10,20 +12,20 @@ export default function decorate(block) {
     const cells = [...row.children];
     if (cells.length >= 2) {
       const label = cells[0].textContent.trim().toLowerCase();
-      const value = cells[1];
+      const value = cells[1].textContent.trim();
       
       if (label.includes('number')) {
         if (Object.keys(currentFeature).length > 0) {
           features.push(currentFeature);
         }
-        currentFeature = { number: cells[1].textContent.trim() };
+        currentFeature = { number: value };
       } else if (label.includes('title')) {
-        currentFeature.title = cells[1].textContent.trim();
+        currentFeature.title = value;
       } else if (label.includes('image')) {
         const img = cells[1].querySelector('img');
-        if (img) currentFeature.image = img.src;
+        currentFeature.image = img ? img.src : '';
       } else if (label.includes('description')) {
-        currentFeature.description = cells[1].textContent.trim();
+        currentFeature.description = value;
       }
     }
   });
@@ -32,16 +34,20 @@ export default function decorate(block) {
     features.push(currentFeature);
   }
   
-  block.innerHTML = `
-    <div class="features-grid">
-      ${features.map(f => `
-        <div class="feature-item">
-          <div class="feature-number">${f.number}</div>
-          <h3 class="feature-title">${f.title}</h3>
-          ${f.image ? `<img src="${f.image}" alt="${f.title}">` : ''}
-          <p class="feature-description">${f.description}</p>
+  const featuresHTML = `
+    <div class="feature-grid">
+      ${features.map(feature => `
+        <div class="feature-box">
+          <div class="feature-number">
+            <span>${feature.number}</span>
+            ${feature.image ? `<img src="${feature.image}" alt="${feature.title}">` : ''}
+          </div>
+          <div class="feature-title">${feature.title}</div>
+          <p>${feature.description}</p>
         </div>
       `).join('')}
     </div>
   `;
+  
+  block.innerHTML = featuresHTML;
 }

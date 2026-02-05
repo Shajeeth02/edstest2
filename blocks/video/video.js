@@ -1,75 +1,57 @@
 /**
- * Video Block
+ * Video Block - Hover to Play
  */
 export default function decorate(block) {
   const rows = [...block.children];
   
+  let heading = '';
   let videoSrc = '';
   let posterSrc = '';
-  let heading = '';
   
   rows.forEach((row) => {
     const cells = [...row.children];
     if (cells.length >= 2) {
       const label = cells[0].textContent.trim().toLowerCase();
-      const value = cells[1].textContent.trim();
       
-      if (label.includes('video') || label.includes('source')) {
-        videoSrc = value;
-      } else if (label.includes('poster') || label.includes('thumbnail')) {
-        posterSrc = value;
-      } else if (label.includes('heading') || label.includes('title')) {
-        heading = value;
+      if (label.includes('heading')) {
+        heading = cells[1].textContent.trim();
+      } else if (label.includes('video')) {
+        const link = cells[1].querySelector('a');
+        videoSrc = link ? link.href : cells[1].textContent.trim();
+      } else if (label.includes('poster')) {
+        const img = cells[1].querySelector('img');
+        posterSrc = img ? img.src : cells[1].textContent.trim();
       }
     }
   });
   
-  block.innerHTML = `
+  const videoHTML = `
+    ${heading ? `<h2>${heading}</h2>` : ''}
     <div class="video-container">
-      ${heading ? `<h2 class="video-heading">${heading}</h2>` : ''}
-      <div class="video-wrapper">
-        <video 
-          ${posterSrc ? `poster="${posterSrc}"` : ''}
-          loop
-          muted
-          playsinline
-          preload="metadata"
-        >
-          <source src="${videoSrc}" type="video/mp4">
-        </video>
-        <div class="video-overlay">
-          <svg width="80" height="80" viewBox="0 0 80 80">
-            <circle cx="40" cy="40" r="38" stroke="white" stroke-width="2" opacity="0.8"/>
-            <path d="M32 26L56 40L32 54V26Z" fill="white" opacity="0.9"/>
-          </svg>
-        </div>
-      </div>
+      <img src="${posterSrc}" alt="Video thumbnail" class="video-thumbnail">
+      <video class="hover-video" muted loop>
+        <source src="${videoSrc}" type="video/mp4">
+      </video>
     </div>
   `;
   
-  const video = block.querySelector('video');
-  const overlay = block.querySelector('.video-overlay');
-  const wrapper = block.querySelector('.video-wrapper');
+  block.innerHTML = videoHTML;
   
-  if (video) {
-    wrapper.addEventListener('mouseenter', () => {
+  const container = block.querySelector('.video-container');
+  const video = block.querySelector('.hover-video');
+  const thumbnail = block.querySelector('.video-thumbnail');
+  
+  if (container && video) {
+    container.addEventListener('mouseenter', () => {
+      video.style.opacity = '1';
+      thumbnail.style.opacity = '0';
       video.play();
-      overlay.style.opacity = '0';
     });
     
-    wrapper.addEventListener('mouseleave', () => {
+    container.addEventListener('mouseleave', () => {
+      video.style.opacity = '0';
+      thumbnail.style.opacity = '1';
       video.pause();
-      overlay.style.opacity = '1';
-    });
-    
-    wrapper.addEventListener('click', () => {
-      if (video.paused) {
-        video.play();
-        overlay.style.opacity = '0';
-      } else {
-        video.pause();
-        overlay.style.opacity = '1';
-      }
     });
   }
 }

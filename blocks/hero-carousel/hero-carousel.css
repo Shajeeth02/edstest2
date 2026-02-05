@@ -1,20 +1,18 @@
-/* Hero Carousel Styles - Pure Vanilla JS */
-
+/* Hero Carousel */
 .hero-carousel {
   width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: #000;
 }
 
 .hero-carousel-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
 }
 
-.hero-carousel-track {
+.hero-slides {
   width: 100%;
   height: 100%;
   position: relative;
@@ -28,7 +26,6 @@
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  z-index: 0;
 }
 
 .hero-slide.active {
@@ -40,119 +37,78 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-/* Navigation Buttons */
 .hero-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  color: #fff;
+  border-radius: 50%;
 }
 
 .hero-nav:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-50%) scale(1.1);
+  background: rgba(255, 255, 255, 0.4);
 }
 
-.hero-nav:active {
-  transform: translateY(-50%) scale(0.95);
+.hero-nav.prev {
+  left: 20px;
 }
 
-.hero-prev {
-  left: 2rem;
+.hero-nav.next {
+  right: 20px;
 }
 
-.hero-next {
-  right: 2rem;
-}
-
-.hero-nav svg {
-  width: 24px;
-  height: 24px;
-}
-
-/* Pagination Dots */
-.hero-pagination {
+.hero-dots {
   position: absolute;
-  bottom: 2rem;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.75rem;
+  gap: 10px;
   z-index: 10;
 }
 
-.hero-dot {
+.dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
   padding: 0;
 }
 
-.hero-dot:hover {
-  background: rgba(255, 255, 255, 0.6);
-  transform: scale(1.2);
-}
-
-.hero-dot.active {
+.dot.active {
   background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 1);
   width: 32px;
   border-radius: 6px;
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   .hero-nav {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
   }
   
-  .hero-prev {
-    left: 1rem;
+  .hero-nav.prev {
+    left: 10px;
   }
   
-  .hero-next {
-    right: 1rem;
-  }
-  
-  .hero-pagination {
-    bottom: 1.5rem;
-  }
-  
-  .hero-dot {
-    width: 10px;
-    height: 10px;
-  }
-  
-  .hero-dot.active {
-    width: 24px;
-  }
-}
-
-/* Tablet Styles */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .hero-nav {
-    width: 3rem;
-    height: 3rem;
+  .hero-nav.next {
+    right: 10px;
   }
 }

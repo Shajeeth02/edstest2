@@ -1,6 +1,5 @@
 /**
- * Track Legend Block - Pure Vanilla JS Infinite Loop
- * Smooth continuous scrolling carousel
+ * Track Legend - Infinite Horizontal Scroll
  */
 export default function decorate(block) {
   const rows = [...block.children];
@@ -25,191 +24,77 @@ export default function decorate(block) {
     }
   });
   
-  // Duplicate images for seamless loop
   const allImages = [...images, ...images, ...images];
   
   const trackHTML = `
-    <div class="track-legend-content">
-      ${heading ? `<h2 class="track-heading">${heading}</h2>` : ''}
-      ${subheading ? `<p class="track-subheading">${subheading}</p>` : ''}
+    <div class="track-content">
+      ${heading ? `<h6>${heading}</h6>` : ''}
+      ${subheading ? `<h3>${subheading}</h3>` : ''}
     </div>
-    <div class="track-carousel-wrapper">
-      <div class="track-carousel-container">
-        <div class="track-carousel-track">
-          ${allImages.map((src, index) => `
-            <div class="track-slide" data-index="${index}">
-              <img src="${src}" alt="Koenigsegg ${index + 1}">
-            </div>
-          `).join('')}
-        </div>
-      </div>
-      <div class="track-controls">
-        <button class="track-nav track-prev" aria-label="Scroll left">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-        <button class="track-nav track-next" aria-label="Scroll right">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
+    <div class="track-carousel">
+      <div class="track-scroll">
+        ${allImages.map(src => `
+          <div class="track-item">
+            <img src="${src}" alt="Koenigsegg">
+          </div>
+        `).join('')}
       </div>
     </div>
   `;
   
   block.innerHTML = trackHTML;
   
-  // Initialize infinite scroll
-  const track = block.querySelector('.track-carousel-track');
-  const slides = block.querySelectorAll('.track-slide');
-  const prevBtn = block.querySelector('.track-prev');
-  const nextBtn = block.querySelector('.track-next');
+  const scroll = block.querySelector('.track-scroll');
+  if (!scroll) return;
   
-  if (slides.length === 0) return;
-  
-  let scrollSpeed = 0.5; // pixels per frame
-  let animationFrame;
+  let scrollPos = 0;
   let isHovered = false;
-  let currentScroll = 0;
-  
-  // Calculate total width
-  const slideWidth = slides[0].offsetWidth;
-  const gap = 20; // matches CSS gap
-  const totalWidth = (slideWidth + gap) * images.length;
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
   
   function animate() {
-    if (!isHovered) {
-      currentScroll += scrollSpeed;
+    if (!isHovered && !isDragging) {
+      scrollPos += 1;
+      const itemWidth = scroll.querySelector('.track-item').offsetWidth + 20;
+      const resetPoint = (itemWidth * images.length);
       
-      // Reset scroll when we've moved one full set
-      if (currentScroll >= totalWidth) {
-        currentScroll = 0;
+      if (scrollPos >= resetPoint) {
+        scrollPos = 0;
       }
       
-      track.style.transform = `translateX(-${currentScroll}px)`;
+      scroll.style.transform = `translateX(-${scrollPos}px)`;
     }
-    
-    animationFrame = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
   }
   
-  function scrollTo(direction) {
-    const scrollAmount = slideWidth + gap;
-    
-    if (direction === 'next') {
-      currentScroll += scrollAmount;
-    } else {
-      currentScroll -= scrollAmount;
-    }
-    
-    // Keep scroll within bounds
-    if (currentScroll >= totalWidth) {
-      currentScroll = 0;
-    } else if (currentScroll < 0) {
-      currentScroll = totalWidth - scrollAmount;
-    }
-    
-    track.style.transition = 'transform 0.5s ease';
-    track.style.transform = `translateX(-${currentScroll}px)`;
-    
-    setTimeout(() => {
-      track.style.transition = '';
-    }, 500);
-  }
+  scroll.addEventListener('mouseenter', () => { isHovered = true; });
+  scroll.addEventListener('mouseleave', () => { isHovered = false; });
   
-  // Event listeners
-  prevBtn.addEventListener('click', () => scrollTo('prev'));
-  nextBtn.addEventListener('click', () => scrollTo('next'));
-  
-  // Pause on hover
-  block.addEventListener('mouseenter', () => {
-    isHovered = true;
-  });
-  
-  block.addEventListener('mouseleave', () => {
-    isHovered = false;
-  });
-  
-  // Touch/swipe support
-  let touchStartX = 0;
-  let touchEndX = 0;
-  let isDragging = false;
-  let startScroll = 0;
-  
-  block.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+  scroll.addEventListener('mousedown', (e) => {
     isDragging = true;
-    startScroll = currentScroll;
+    startX = e.pageX - scroll.offsetLeft;
+    scrollLeft = scrollPos;
+    scroll.style.cursor = 'grabbing';
   });
   
-  block.addEventListener('touchmove', (e) => {
+  scroll.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    
-    const touchCurrentX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchCurrentX;
-    
-    currentScroll = startScroll + diff;
-    
-    // Keep within bounds
-    if (currentScroll < 0) currentScroll = 0;
-    if (currentScroll >= totalWidth) currentScroll = totalWidth - 1;
-    
-    track.style.transform = `translateX(-${currentScroll}px)`;
+    e.preventDefault();
+    const x = e.pageX - scroll.offsetLeft;
+    const walk = (startX - x);
+    scrollPos = scrollLeft + walk;
   });
   
-  block.addEventListener('touchend', (e) => {
+  scroll.addEventListener('mouseup', () => {
     isDragging = false;
-    touchEndX = e.changedTouches[0].screenX;
-    
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        scrollTo('next');
-      } else {
-        scrollTo('prev');
-      }
-    }
+    scroll.style.cursor = 'grab';
   });
   
-  // Mouse drag support (desktop)
-  let mouseStartX = 0;
-  let mouseIsDragging = false;
-  let mouseStartScroll = 0;
-  
-  track.addEventListener('mousedown', (e) => {
-    mouseStartX = e.clientX;
-    mouseIsDragging = true;
-    mouseStartScroll = currentScroll;
-    track.style.cursor = 'grabbing';
+  scroll.addEventListener('mouseleave', () => {
+    isDragging = false;
+    scroll.style.cursor = 'grab';
   });
   
-  document.addEventListener('mousemove', (e) => {
-    if (!mouseIsDragging) return;
-    
-    const diff = mouseStartX - e.clientX;
-    currentScroll = mouseStartScroll + diff;
-    
-    // Keep within bounds
-    if (currentScroll < 0) currentScroll = 0;
-    if (currentScroll >= totalWidth) currentScroll = totalWidth - 1;
-    
-    track.style.transform = `translateX(-${currentScroll}px)`;
-  });
-  
-  document.addEventListener('mouseup', () => {
-    if (mouseIsDragging) {
-      mouseIsDragging = false;
-      track.style.cursor = 'grab';
-    }
-  });
-  
-  // Start animation
   animate();
-  
-  // Cleanup on unmount
-  block.addEventListener('DOMNodeRemoved', () => {
-    cancelAnimationFrame(animationFrame);
-  });
 }

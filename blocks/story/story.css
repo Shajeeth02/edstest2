@@ -1,21 +1,12 @@
-/* Story - zero out EDS section/wrapper for edge-to-edge image */
-.story-container {
-  padding: 0;
-  margin: 0;
-}
-
-.story-wrapper {
-  padding: 0;
-  margin: 0;
-}
-
 /* Story */
 .story {
-  padding: 0;
+  padding: 4rem 2rem;
   background: #000;
 }
 
 .story .story-container {
+  max-width: 1400px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }

@@ -1,24 +1,48 @@
+/* Story - zero out EDS section/wrapper for edge-to-edge image */
+.story-container {
+  padding: 0;
+  margin: 0;
+}
+
+.story-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
 /* Story */
 .story {
-  padding: 4rem 2rem;
+  padding: 0;
   background: #000;
 }
 
-.story-container {
-  max-width: 1400px;
-  margin: 0 auto;
+.story .story-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+}
+
+.story-image {
+  overflow: hidden;
 }
 
 .story-image img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 6rem;
 }
 
 .story-content h2 {
-  font-size: 3rem;
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   margin-bottom: 2rem;
   color: #fff;
 }
@@ -30,7 +54,11 @@
 }
 
 @media (max-width: 768px) {
-  .story-container {
+  .story .story-container {
     grid-template-columns: 1fr;
+  }
+
+  .story-content {
+    padding: 3rem 2rem;
   }
 }

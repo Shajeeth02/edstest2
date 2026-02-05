@@ -1,0 +1,29 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="60" fill="transparent"/>
+  
+  <!-- Koenigsegg Shield -->
+  <g>
+    <!-- Shield shape -->
+    <path d="M20 10 L90 10 C100 10 100 20 100 30 L100 45 C100 50 95 55 90 55 L20 55 C15 55 10 50 10 45 L10 30 C10 20 15 10 20 10 Z" 
+          fill="none" stroke="white" stroke-width="2"/>
+    
+    <!-- Inner shield details -->
+    <path d="M25 15 L85 15 C88 15 88 18 88 20 L88 40 C88 42 88 45 85 45 L25 45 C22 45 22 42 22 40 L22 20 C22 18 22 15 25 15 Z" 
+          fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Koenigsegg text -->
+    <text x="50" y="35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" 
+          fill="white" text-anchor="middle" letter-spacing="1">KOENIGSEGG</text>
+    
+    <!-- Subtitle -->
+    <text x="50" y="50" font-family="Arial, sans-serif" font-size="8" 
+          fill="white" text-anchor="middle" letter-spacing="2">SWEDEN</text>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="15" cy="15" r="2" fill="white" opacity="0.3"/>
+  <circle cx="85" cy="15" r="2" fill="white" opacity="0.3"/>
+  <circle cx="15" cy="45" r="2" fill="white" opacity="0.3"/>
+  <circle cx="85" cy="45" r="2" fill="white" opacity="0.3"/>
+</svg>

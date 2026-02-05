@@ -1,0 +1,17 @@
+/* Closing */
+.closing {
+  padding: 4rem 2rem;
+  background: #000;
+  text-align: center;
+}
+
+.closing-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.closing-quote {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #fff;
+}

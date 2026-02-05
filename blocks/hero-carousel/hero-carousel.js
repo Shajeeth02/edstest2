@@ -52,6 +52,7 @@ export default function decorate(block) {
   }
   
   function startAutoplay() {
+    clearInterval(autoplayInterval);
     autoplayInterval = setInterval(nextSlide, 5000);
   }
   
@@ -79,15 +80,15 @@ export default function decorate(block) {
     });
   });
   
-  let pausedByHover = false;
-  block.addEventListener('mousemove', () => {
-    if (!pausedByHover) {
-      pausedByHover = true;
+  let hasLeft = false;
+  block.addEventListener('mouseenter', () => {
+    if (hasLeft) {
+      hasLeft = false;
       stopAutoplay();
     }
   });
   block.addEventListener('mouseleave', () => {
-    pausedByHover = false;
+    hasLeft = true;
     startAutoplay();
   });
   

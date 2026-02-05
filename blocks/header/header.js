@@ -5,7 +5,7 @@ export default function decorate(block) {
   const headerHTML = `
     <div class="header-container">
       <a href="/" class="header-logo">
-        <img src="/icons/koenigsegg-logo.svg" alt="Koenigsegg" />
+        <img src="/icons/koeingsegg_vert_grey.svg" alt="Koenigsegg" />
       </a>
       
       <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">

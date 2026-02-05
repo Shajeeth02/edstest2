@@ -79,8 +79,17 @@ export default function decorate(block) {
     });
   });
   
-  block.addEventListener('mouseenter', stopAutoplay);
-  block.addEventListener('mouseleave', startAutoplay);
+  let pausedByHover = false;
+  block.addEventListener('mousemove', () => {
+    if (!pausedByHover) {
+      pausedByHover = true;
+      stopAutoplay();
+    }
+  });
+  block.addEventListener('mouseleave', () => {
+    pausedByHover = false;
+    startAutoplay();
+  });
   
   startAutoplay();
 }

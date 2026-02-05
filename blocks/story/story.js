@@ -17,7 +17,7 @@ export default function decorate(block) {
       } else if (label.includes('heading')) {
         heading = cells[1].textContent.trim();
       } else if (label.includes('text')) {
-        text = cells[1].textContent.trim();
+        text = cells[1].innerHTML.trim();
       }
     }
   });
@@ -29,7 +29,7 @@ export default function decorate(block) {
       </div>
       <div class="story-content">
         <h2>${heading}</h2>
-        <p>${text}</p>
+        ${text}
       </div>
     </div>
   `;

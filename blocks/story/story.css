@@ -30,8 +30,9 @@
 }
 
 .story-content h2 {
+  font-family: roboto, sans-serif;
   font-size: 2rem;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-bottom: 2rem;
@@ -39,9 +40,16 @@
 }
 
 .story-content p {
+  font-family: roboto, sans-serif;
   font-size: 1.1rem;
+  font-weight: 400;
   line-height: 1.8;
   color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.story-content p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {

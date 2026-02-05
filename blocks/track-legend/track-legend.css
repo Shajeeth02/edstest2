@@ -1,23 +1,187 @@
-/* Track Legend */
+/* Track Legend Styles - Infinite Loop Carousel */
+
 .track-legend {
-  padding: 4rem 2rem;
+  width: 100%;
+  padding: 4rem 0;
   background: #000;
+  position: relative;
+  overflow: hidden;
 }
 
-.track-legend-heading {
-  font-size: 3rem;
+.track-legend-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
   text-align: center;
+}
+
+.track-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: #fff;
   margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.track-subheading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.track-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.track-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.track-carousel-track {
+  display: flex;
+  gap: 20px;
+  cursor: grab;
+  user-select: none;
+  will-change: transform;
+}
+
+.track-carousel-track:active {
+  cursor: grabbing;
+}
+
+.track-slide {
+  flex: 0 0 auto;
+  width: 500px;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+.track-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+  pointer-events: none; /* Prevent image drag */
+}
+
+.track-slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Navigation Controls */
+.track-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.track-nav {
+  pointer-events: all;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
   color: #fff;
 }
 
-.track-legend-subheading {
-  text-align: center;
-  margin-bottom: 3rem;
-  color: #999;
+.track-nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
 }
 
-.track-legend .splide__slide img {
-  width: 100%;
-  height: auto;
+.track-nav:active {
+  transform: scale(0.95);
+}
+
+.track-nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .track-heading {
+    font-size: 2.5rem;
+  }
+  
+  .track-subheading {
+    font-size: 1rem;
+  }
+  
+  .track-slide {
+    width: 400px;
+    height: 280px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .track-legend {
+    padding: 3rem 0;
+  }
+  
+  .track-legend-content {
+    padding: 0 1rem 2rem;
+  }
+  
+  .track-heading {
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .track-subheading {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+  }
+  
+  .track-slide {
+    width: 300px;
+    height: 210px;
+  }
+  
+  .track-nav {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .track-nav svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .track-slide {
+    width: 250px;
+    height: 175px;
+  }
+  
+  .track-heading {
+    font-size: 1.5rem;
+  }
 }

@@ -1,0 +1,81 @@
+/* Design Philosophy */
+.design-philosophy {
+  padding: 0;
+  margin: 0;
+  background: #0f0f0f;
+}
+
+.design-philosophy-container {
+  max-width: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  min-height: 600px;
+}
+
+.design-philosophy-content {
+  padding: 6rem 4rem 6rem 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #0f0f0f;
+}
+
+.design-philosophy-heading {
+  font-family: roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #ccc;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  max-width: 90%;
+}
+
+.design-philosophy-description {
+  font-family: roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #ccc;
+}
+
+.design-philosophy-description p {
+  margin-bottom: 1.5rem;
+}
+
+.design-philosophy-description p:last-child {
+  margin-bottom: 0;
+}
+
+.design-philosophy-description strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.design-philosophy-image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.design-philosophy-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .design-philosophy-container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .design-philosophy-content {
+    padding: 3rem 2rem;
+  }
+}

@@ -4,21 +4,33 @@
 export default function decorate(block) {
   const images = block.querySelectorAll('img');
   if (images.length === 0) return;
-  
+
+  // Helper function to get high-res image URL
+  function getHighResUrl(imgSrc) {
+    const url = new URL(imgSrc, window.location.origin);
+    // Request larger image size for better quality
+    url.searchParams.set('width', '2400');
+    url.searchParams.set('format', 'webply');
+    url.searchParams.set('optimize', 'medium');
+    return url.toString();
+  }
+
   const carouselHTML = `
     <div class="hero-carousel-container">
       <div class="hero-slides">
-        ${Array.from(images).map((img, i) => `
+        ${Array.from(images).map((img, i) => {
+          const highResSrc = getHighResUrl(img.src);
+          return `
           <div class="hero-slide ${i === 0 ? 'active' : ''}">
             <img
-              src="${img.src}"
-              srcset="${img.srcset || ''}"
-              sizes="${img.sizes || '100vw'}"
+              src="${highResSrc}"
               alt="${img.alt || 'Koenigsegg'}"
               loading="eager"
-              decoding="sync">
+              decoding="auto"
+              fetchpriority="high">
           </div>
-        `).join('')}
+        `;
+        }).join('')}
       </div>
       <button class="hero-nav prev" aria-label="Previous">‹</button>
       <button class="hero-nav next" aria-label="Next">›</button>

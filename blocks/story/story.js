@@ -2,6 +2,15 @@
  * Story Block - AEM EDS
  */
 export default function decorate(block) {
+  // Helper function to get high-res image URL
+  function getHighResUrl(imgSrc) {
+    const url = new URL(imgSrc, window.location.origin);
+    url.searchParams.set('width', '2400');
+    url.searchParams.set('format', 'webply');
+    url.searchParams.set('optimize', 'medium');
+    return url.toString();
+  }
+
   const rows = [...block.children];
   let image = '';
   let heading = '';
@@ -13,7 +22,7 @@ export default function decorate(block) {
       const label = cells[0].textContent.trim().toLowerCase();
       if (label.includes('image')) {
         const img = cells[1].querySelector('img');
-        if (img) image = img.src;
+        if (img) image = getHighResUrl(img.src);
       } else if (label.includes('heading')) {
         heading = cells[1].textContent.trim();
       } else if (label.includes('text')) {

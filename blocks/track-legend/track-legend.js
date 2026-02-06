@@ -2,8 +2,17 @@
  * Track Legend - Infinite Horizontal Scroll
  */
 export default function decorate(block) {
+  // Helper function to get high-res image URL
+  function getHighResUrl(imgSrc) {
+    const url = new URL(imgSrc, window.location.origin);
+    url.searchParams.set('width', '2400');
+    url.searchParams.set('format', 'webply');
+    url.searchParams.set('optimize', 'medium');
+    return url.toString();
+  }
+
   const rows = [...block.children];
-  
+
   let heading = '';
   let subheading = '';
   const images = [];
@@ -19,7 +28,7 @@ export default function decorate(block) {
         subheading = cells[1].textContent.trim();
       } else if (label.includes('image')) {
         const img = cells[1].querySelector('img');
-        if (img) images.push(img.src);
+        if (img) images.push(getHighResUrl(img.src));
       }
     }
   });

@@ -4,6 +4,15 @@
 export default function decorate(block) {
   const rows = [...block.children];
 
+  // Helper function to get high-res image URL
+  function getHighResUrl(imgSrc) {
+    const url = new URL(imgSrc, window.location.origin);
+    url.searchParams.set('width', '2400');
+    url.searchParams.set('format', 'webply');
+    url.searchParams.set('optimize', 'medium');
+    return url.toString();
+  }
+
   const features = [];
   let currentFeature = {};
 
@@ -17,7 +26,7 @@ export default function decorate(block) {
           features.push(currentFeature);
         }
         const img = cells[1].querySelector('img');
-        currentFeature = { image: img ? img.src : '' };
+        currentFeature = { image: img ? getHighResUrl(img.src) : '' };
       } else if (label.includes('title')) {
         currentFeature.title = cells[1].textContent.trim();
       } else if (label.includes('description')) {

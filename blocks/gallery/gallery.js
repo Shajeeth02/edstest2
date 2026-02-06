@@ -6,12 +6,21 @@ export default function decorate(block) {
   let title = '';
   const albums = [];
   let currentAlbum = {};
-  
+
+  // Helper function to get high-res image URL
+  function getHighResUrl(imgSrc) {
+    const url = new URL(imgSrc, window.location.origin);
+    url.searchParams.set('width', '2400');
+    url.searchParams.set('format', 'webply');
+    url.searchParams.set('optimize', 'medium');
+    return url.toString();
+  }
+
   rows.forEach((row) => {
     const cells = [...row.children];
     if (cells.length >= 2) {
       const label = cells[0].textContent.trim().toLowerCase();
-      
+
       if (label === 'title') {
         title = cells[1].textContent.trim();
       } else if (label.includes('album') && label.includes('title')) {
@@ -21,10 +30,10 @@ export default function decorate(block) {
         currentAlbum = { title: cells[1].textContent.trim(), images: [] };
       } else if (label.includes('album') && label.includes('thumbnail')) {
         const img = cells[1].querySelector('img');
-        if (img) currentAlbum.thumbnail = img.src;
+        if (img) currentAlbum.thumbnail = getHighResUrl(img.src);
       } else if (label.includes('album') && label.includes('image')) {
         const img = cells[1].querySelector('img');
-        if (img) currentAlbum.images.push(img.src);
+        if (img) currentAlbum.images.push(getHighResUrl(img.src));
       }
     }
   });

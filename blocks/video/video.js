@@ -26,6 +26,15 @@ function getVimeoId(url) {
 }
 
 export default function decorate(block) {
+  // Helper function to get high-res image URL
+  function getHighResUrl(imgSrc) {
+    const url = new URL(imgSrc, window.location.origin);
+    url.searchParams.set('width', '2400');
+    url.searchParams.set('format', 'webply');
+    url.searchParams.set('optimize', 'medium');
+    return url.toString();
+  }
+
   console.log('🎥 Video Block: Initializing...');
 
   const rows = [...block.children];
@@ -43,7 +52,7 @@ export default function decorate(block) {
         videoUrl = link ? link.href : cells[1].textContent.trim();
       } else if (label.includes('thumbnail') || label.includes('poster')) {
         const img = cells[1].querySelector('img');
-        thumbnailSrc = img ? img.src : cells[1].textContent.trim();
+        thumbnailSrc = img ? getHighResUrl(img.src) : cells[1].textContent.trim();
       }
     }
   });
@@ -55,7 +64,7 @@ export default function decorate(block) {
   if (!thumbnailSrc) {
     const anyImg = block.querySelector('img');
     if (anyImg) {
-      thumbnailSrc = anyImg.src;
+      thumbnailSrc = getHighResUrl(anyImg.src);
       console.log('🎥 Found thumbnail from img tag:', thumbnailSrc);
     } else {
       console.warn('⚠️ No thumbnail found! Add a thumbnail image to your Video block in your EDS document.');

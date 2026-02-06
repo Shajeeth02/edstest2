@@ -8,6 +8,15 @@ export default function decorate(block) {
   let description = '';
   let imageSrc = '';
 
+  // Helper function to get high-res image URL
+  function getHighResUrl(imgSrc) {
+    const url = new URL(imgSrc, window.location.origin);
+    url.searchParams.set('width', '2400');
+    url.searchParams.set('format', 'webply');
+    url.searchParams.set('optimize', 'medium');
+    return url.toString();
+  }
+
   rows.forEach((row) => {
     const cells = [...row.children];
     if (cells.length >= 2) {
@@ -19,7 +28,7 @@ export default function decorate(block) {
         description = cells[1].innerHTML.trim();
       } else if (label.includes('image')) {
         const img = cells[1].querySelector('img');
-        imageSrc = img ? img.src : '';
+        imageSrc = img ? getHighResUrl(img.src) : '';
       }
     }
   });
@@ -28,7 +37,7 @@ export default function decorate(block) {
   if (!imageSrc) {
     const anyImg = block.querySelector('img');
     if (anyImg) {
-      imageSrc = anyImg.src;
+      imageSrc = getHighResUrl(anyImg.src);
     }
   }
 

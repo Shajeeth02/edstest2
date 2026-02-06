@@ -26,6 +26,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
 }
 
 /* Typography */
@@ -100,6 +102,14 @@ html {
 /* Main Content Spacing (account for fixed header) */
 main {
   padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* Ensure footer is at bottom with no space after */
+.footer,
+.footer-wrapper {
+  margin-bottom: 0 !important;
 }
 
 /* Section Spacing */

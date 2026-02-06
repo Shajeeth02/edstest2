@@ -24,6 +24,14 @@ export default function decorate(block) {
     }
   });
 
+  // Fallback: try to find any image if not found with label
+  if (!imageSrc) {
+    const anyImg = block.querySelector('img');
+    if (anyImg) {
+      imageSrc = anyImg.src;
+    }
+  }
+
   block.innerHTML = `
     <div class="design-philosophy-container">
       <div class="design-philosophy-content">

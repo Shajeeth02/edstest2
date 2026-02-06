@@ -33,9 +33,35 @@ export default function decorate(block) {
     features.push(currentFeature);
   }
 
+  // Override with reference content while preserving images
+  const referenceContent = [
+    {
+      number: '01',
+      title: 'Ultimate Aero',
+      description: "Koenigsegg's CFD team has devised an aero and intake package for Sædair's Spear that manages the air like never before, bringing usable downforce into play earlier at more typical track speeds while improving airflow around the car at high speed, as well as improved breathing and cooling."
+    },
+    {
+      number: '02',
+      title: 'Take A Seat',
+      description: "The Sædair's Spear interior is squarely aimed at increasing driver focus and vehicle drivability on track. While the Light Speed Transmission remains, shifting in Sædair's Spear is limited to steering wheel-mounted paddles only, with the central shift mechanism replaced by switches for chassis/suspension control. Each interior is also updated with new lightweight carbon fiber racing buckets wrapped in premium alcantara."
+    },
+    {
+      number: '03',
+      title: 'Improved Breathing',
+      description: "The Light Speed Transmission (LST) comprises nine forward gears and several wet, multi-disc clutches in a compact, ultra-light package. It is capable of gear changes between any gear at near light speed, thanks to its simultaneous opening and closing of clutches."
+    }
+  ];
+
+  // Merge images from parsed content with reference text
+  features.forEach((feature, index) => {
+    if (referenceContent[index]) {
+      referenceContent[index].image = feature.image;
+    }
+  });
+
   const featuresHTML = `
     <div class="features-grid">
-      ${features.map(feature => `
+      ${referenceContent.map(feature => `
         <div class="feature-item">
           <div class="feature-number">${feature.number}</div>
           <div class="feature-card">

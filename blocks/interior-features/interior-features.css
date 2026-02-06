@@ -2,7 +2,7 @@
 .interior-features {
   padding: 0;
   margin: 0;
-  background: #0a0a0a;
+  background: #000;
 }
 
 .interior-features-grid {
@@ -10,28 +10,34 @@
   margin: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .interior-feature-item {
   display: flex;
   flex-direction: column;
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
+  background: #000;
+  border: none;
 }
 
 .interior-feature-image {
   width: 100%;
-  height: 500px;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #000;
+  position: relative;
 }
 
 .interior-feature-image img {
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
   object-fit: cover;
+  object-position: center;
 }
 
 .interior-feature-content {
@@ -65,17 +71,24 @@
 @media (max-width: 768px) {
   .interior-features-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .interior-feature-image {
-    height: 350px;
+    height: 300px;
   }
 
   .interior-feature-content {
-    padding: 2rem;
+    padding: 2rem 1.5rem;
   }
 
   .interior-feature-title {
     font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .interior-feature-description {
+    font-size: 0.9rem;
   }
 }

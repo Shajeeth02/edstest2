@@ -10,7 +10,13 @@ export default function decorate(block) {
       <div class="hero-slides">
         ${Array.from(images).map((img, i) => `
           <div class="hero-slide ${i === 0 ? 'active' : ''}">
-            <img src="${img.src}" alt="${img.alt || 'Koenigsegg'}">
+            <img
+              src="${img.src}"
+              srcset="${img.srcset || ''}"
+              sizes="${img.sizes || '100vw'}"
+              alt="${img.alt || 'Koenigsegg'}"
+              loading="eager"
+              decoding="sync">
           </div>
         `).join('')}
       </div>

@@ -44,7 +44,16 @@
 
 @media (max-width: 768px) {
   .crafting-a-legend {
-    padding: 4rem 2rem;
+    padding: 4rem 1.5rem;
+  }
+
+  .crafting-a-legend-container {
+    padding: 0 1rem;
+  }
+
+  .crafting-a-legend-heading {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
   }
 
   .crafting-a-legend-quote {

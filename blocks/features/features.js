@@ -1,5 +1,5 @@
 /**
- * Features Block - 3 Column Grid
+ * Features Block - 3 Column Grid with External Numbers
  */
 export default function decorate(block) {
   const rows = [...block.children];
@@ -36,14 +36,16 @@ export default function decorate(block) {
   const featuresHTML = `
     <div class="features-grid">
       ${features.map(feature => `
-        <div class="feature-card">
+        <div class="feature-item">
           <div class="feature-number">${feature.number}</div>
-          <div class="feature-image">
-            ${feature.image ? `<img src="${feature.image}" alt="${feature.title}">` : ''}
-          </div>
-          <div class="feature-content">
-            <h3 class="feature-title">${feature.title}</h3>
-            <p class="feature-description">${feature.description}</p>
+          <div class="feature-card">
+            <div class="feature-image">
+              ${feature.image ? `<img src="${feature.image}" alt="${feature.title}">` : ''}
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">${feature.title}</h3>
+              <p class="feature-description">${feature.description}</p>
+            </div>
           </div>
         </div>
       `).join('')}

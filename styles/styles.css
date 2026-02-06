@@ -1,8 +1,5 @@
 /* Global Styles - Koenigsegg Website */
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap');
-
 /* CSS Reset */
 * {
   margin: 0;
@@ -12,11 +9,11 @@
 
 /* Root Variables */
 :root {
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
+  --font-heading: roboto, sans-serif;
+  --font-body: roboto, sans-serif;
   --color-bg: #000;
   --color-text: #fff;
-  --color-text-muted: #999;
+  --color-text-muted: #ccc;
   --color-accent: #fff;
 }
 
@@ -109,6 +106,17 @@ main {
 .section {
   width: 100%;
   position: relative;
+}
+
+/* Remove default section padding for edge-to-edge layouts */
+main > div {
+  padding: 0;
+  margin: 0;
+}
+
+main > div > div {
+  padding: 0;
+  margin: 0;
 }
 
 /* Container */

@@ -1,19 +1,19 @@
-/* Philosophy */
-.philosophy {
+/* Crafting a Legend */
+.crafting-a-legend {
   padding: 6rem 3rem;
   background: #000;
   text-align: center;
 }
 
-.philosophy-container {
+.crafting-a-legend-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-.philosophy-heading {
+.crafting-a-legend-heading {
   font-family: roboto, sans-serif;
-  font-size: 0.85rem;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -21,9 +21,9 @@
   color: #999;
 }
 
-.philosophy-quote {
+.crafting-a-legend-quote {
   font-family: roboto, sans-serif;
-  font-size: 1.55rem;
+  font-size: 1.25rem;
   font-weight: 300;
   font-style: italic;
   line-height: 1.75;
@@ -31,7 +31,7 @@
   margin: 0;
 }
 
-.philosophy-author {
+.crafting-a-legend-author {
   display: block;
   margin-top: 3rem;
   font-family: roboto, sans-serif;
@@ -43,15 +43,15 @@
 }
 
 @media (max-width: 768px) {
-  .philosophy {
+  .crafting-a-legend {
     padding: 4rem 2rem;
   }
 
-  .philosophy-quote {
+  .crafting-a-legend-quote {
     font-size: 1.1rem;
   }
 
-  .philosophy-author {
+  .crafting-a-legend-author {
     margin-top: 2rem;
     font-size: 0.9rem;
   }

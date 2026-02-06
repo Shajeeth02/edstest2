@@ -2,7 +2,7 @@
 .performance {
   padding: 6rem 3rem;
   background: #000;
-  text-align: left;
+  text-align: center
 }
 
 .performance-container {
@@ -13,7 +13,7 @@
 
 .performance-heading {
   font-family: roboto, sans-serif;
-  font-size: 0.85rem;
+  font-size: 1.85rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   margin-bottom: 2rem;

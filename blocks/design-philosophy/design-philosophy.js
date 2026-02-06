@@ -34,15 +34,15 @@ export default function decorate(block) {
 
   block.innerHTML = `
     <div class="design-philosophy-container">
-      <div class="design-philosophy-content">
-        ${heading ? `<h2 class="design-philosophy-heading">${heading}</h2>` : ''}
-        ${description ? `<div class="design-philosophy-description">${description}</div>` : ''}
-      </div>
       ${imageSrc ? `
         <div class="design-philosophy-image">
           <img src="${imageSrc}" alt="${heading}">
         </div>
       ` : ''}
+      <div class="design-philosophy-content">
+        ${heading ? `<h2 class="design-philosophy-heading">${heading}</h2>` : ''}
+        ${description ? `<div class="design-philosophy-description">${description}</div>` : ''}
+      </div>
     </div>
   `;
 }

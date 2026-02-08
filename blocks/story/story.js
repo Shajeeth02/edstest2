@@ -33,10 +33,10 @@ export default function decorate(block) {
   
   block.innerHTML = `
     <div class="story-container">
-      <div class="story-image">
+      <div class="story-image animate-slide-left">
         <img src="${image}" alt="${heading}">
       </div>
-      <div class="story-content">
+      <div class="story-content animate-slide-right animate-delay-2">
         <h2>${heading}</h2>
         ${text}
       </div>

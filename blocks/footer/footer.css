@@ -7,6 +7,25 @@
   margin: 0;
 }
 
+/* Ensure no extra space after footer */
+.footer:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 3rem !important;
+}
+
+footer {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Remove any potential extra space from parent containers */
+body > footer,
+body > * > footer {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .footer-container {
   width: 100%;
   margin: 0;

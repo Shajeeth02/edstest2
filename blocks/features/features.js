@@ -70,8 +70,8 @@ export default function decorate(block) {
 
   const featuresHTML = `
     <div class="features-grid">
-      ${referenceContent.map(feature => `
-        <div class="feature-item">
+      ${referenceContent.map((feature, index) => `
+        <div class="feature-item animate-fade-up animate-delay-${index + 1}">
           <div class="feature-number">${feature.number}</div>
           <div class="feature-card">
             <div class="feature-image">

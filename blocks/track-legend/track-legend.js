@@ -37,10 +37,10 @@ export default function decorate(block) {
   
   const trackHTML = `
     <div class="track-content">
-      ${heading ? `<h6>${heading}</h6>` : ''}
-      ${subheading ? `<h3>${subheading}</h3>` : ''}
+      ${heading ? `<h6 class="animate-fade-in">${heading}</h6>` : ''}
+      ${subheading ? `<h3 class="animate-fade-up animate-delay-1">${subheading}</h3>` : ''}
     </div>
-    <div class="track-carousel">
+    <div class="track-carousel animate-scale-in animate-delay-2">
       <div class="track-scroll">
         ${allImages.map(src => `
           <div class="track-item">

@@ -18,6 +18,12 @@
 }
 
 /* Body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--color-bg);
@@ -26,8 +32,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  padding: 0;
 }
 
 /* Typography */
@@ -161,7 +165,18 @@ main > div > div {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -172,7 +187,7 @@ main > div > div {
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(-60px);
   }
   to {
     opacity: 1;
@@ -183,7 +198,7 @@ main > div > div {
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(60px);
   }
   to {
     opacity: 1;
@@ -191,6 +206,99 @@ main > div > div {
   }
 }
 
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation classes - Elements start hidden */
+.animate-fade-in {
+  opacity: 0;
+}
+
+.animate-fade-in.is-visible {
+  animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-up {
+  opacity: 0;
+}
+
+.animate-fade-up.is-visible {
+  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-left {
+  opacity: 0;
+}
+
+.animate-slide-left.is-visible {
+  animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-right {
+  opacity: 0;
+}
+
+.animate-slide-right.is-visible {
+  animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-in {
+  opacity: 0;
+}
+
+.animate-scale-in.is-visible {
+  animation: scaleIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-zoom-in {
+  opacity: 0;
+}
+
+.animate-zoom-in.is-visible {
+  animation: zoomIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered animation delays */
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* Legacy classes for backwards compatibility */
 .fade-in {
   animation: fadeIn 0.8s ease forwards;
 }

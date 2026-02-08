@@ -78,7 +78,7 @@ export default function decorate(block) {
   if (videoType === 'youtube') {
     const videoId = getYouTubeId(videoUrl);
     videoHTML = `
-      <div class="video-container">
+      <div class="video-container animate-zoom-in">
         <img src="${thumbnailSrc}" alt="Video thumbnail" class="video-thumbnail">
         <div class="play-button"></div>
         <iframe
@@ -94,7 +94,7 @@ export default function decorate(block) {
   } else if (videoType === 'vimeo') {
     const videoId = getVimeoId(videoUrl);
     videoHTML = `
-      <div class="video-container">
+      <div class="video-container animate-zoom-in">
         <img src="${thumbnailSrc}" alt="Video thumbnail" class="video-thumbnail">
         <div class="play-button"></div>
         <iframe
@@ -109,7 +109,7 @@ export default function decorate(block) {
     `;
   } else {
     videoHTML = `
-      <div class="video-container">
+      <div class="video-container animate-zoom-in">
         <img src="${thumbnailSrc}" alt="Video thumbnail" class="video-thumbnail">
         <div class="play-button"></div>
         <video class="hover-video" muted loop playsinline>

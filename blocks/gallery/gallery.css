@@ -25,6 +25,7 @@
 .gallery-album {
   cursor: pointer;
   transition: transform 0.3s;
+  position: relative;
 }
 
 .gallery-album:hover {
@@ -33,7 +34,11 @@
 
 .gallery-album img {
   width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
   margin-bottom: 1rem;
+  display: block;
 }
 
 .gallery-album h3 {

@@ -674,6 +674,39 @@ async function loadHeader(header) {
  * @returns {Promise}
  */
 async function loadFooter(footer) {
+  try {
+    // Try fetching footer content - try both /footer and /footer.plain.html
+    let resp = await fetch('/footer');
+    if (!resp.ok) {
+      resp = await fetch('/footer.plain.html');
+    }
+
+    if (resp.ok) {
+      const html = await resp.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+
+      // Convert footer content to block format
+      const rows = [];
+      doc.body.querySelectorAll(':scope > div').forEach(div => {
+        const cols = [];
+        div.querySelectorAll(':scope > div').forEach(col => {
+          cols.push(col);
+        });
+        if (cols.length > 0) {
+          rows.push(cols);
+        }
+      });
+
+      const footerBlock = buildBlock('footer', rows);
+      footer.append(footerBlock);
+      decorateBlock(footerBlock);
+      return loadBlock(footerBlock);
+    }
+  } catch (error) {
+    console.error('Failed to load footer:', error);
+  }
+
+  // Fallback to empty block if fetch fails
   const footerBlock = buildBlock('footer', '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);

@@ -44,10 +44,10 @@ export default function decorate(block) {
   
   block.innerHTML = `
     <div class="gallery-container">
-      ${title ? `<h2 class="gallery-title">${title}</h2>` : ''}
+      ${title ? `<h2 class="gallery-title animate-fade-up">${title}</h2>` : ''}
       <div class="gallery-albums">
         ${albums.map((album, idx) => `
-          <div class="gallery-album" data-album="${idx}">
+          <div class="gallery-album animate-scale-in animate-delay-${Math.min(idx + 1, 5)}" data-album="${idx}">
             <img src="${album.thumbnail}" alt="${album.title}">
             <h3>${album.title}</h3>
           </div>

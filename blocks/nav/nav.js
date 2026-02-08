@@ -2,33 +2,64 @@
  * Header Block - Fixed Navigation with Close on Backdrop Click & Scroll
  */
 export default function decorate(block) {
+  console.log('🔍 Block HTML:', block.innerHTML);
+  console.log('🔍 Block element:', block);
+
+  const rows = [...block.children];
+  const navItems = [];
+  let logoSrc = '/icons/koenigsegg_vert_grey.svg'; // Default logo
+
+  console.log('🔍 Header: Total rows found:', rows.length);
+
+  // Parse navigation items and logo from the authored content
+  rows.forEach((row, index) => {
+    const cells = [...row.children];
+    console.log(`🔍 Row ${index}: ${cells.length} cells`);
+
+    if (cells.length >= 1) {
+      const label = cells[0].textContent.trim().toLowerCase();
+      console.log(`🔍 Row ${index} - Label: "${label}"`);
+
+      // Check for logo
+      if (label === 'logo' && cells.length >= 2) {
+        const img = cells[1].querySelector('img');
+        const value = cells[1].textContent.trim();
+        logoSrc = img ? img.src : value;
+        console.log(`🔍 Logo found: ${logoSrc}`);
+      } else if (label !== 'header' && label !== 'logo' && label) {
+        // Regular navigation items
+        const text = cells[0].textContent.trim();
+        const url = cells.length >= 2 ? cells[1].textContent.trim() : '#';
+        console.log(`🔍 Nav item: "${text}" -> "${url}"`);
+        // Check if URL is external (starts with http/https)
+        const isExternal = url.startsWith('http://') || url.startsWith('https://');
+        navItems.push({ text, url: url || '#', isExternal });
+      }
+    }
+  });
+
+  console.log('🔍 Total nav items parsed:', navItems.length, navItems);
+
   const headerHTML = `
     <div class="header-container">
       <a href="/" class="header-logo">
-        <img src="/icons/koenigsegg_vert_grey.svg" alt="Koenigsegg" />
+        <img src="${logoSrc}" alt="Koenigsegg" />
       </a>
-      
+
       <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
       </button>
-      
+
       <nav class="header-nav">
-        <a href="/megacars" class="nav-link">Megacars</a>
-        <a href="/technology" class="nav-link">Technology</a>
-        <a href="/about" class="nav-link">About</a>
-        <a href="/history" class="nav-link">History</a>
-        <a href="/dealer-locator" class="nav-link">Dealer locator</a>
-        <a href="https://gear.koenigsegg.com" class="nav-link" target="_blank">Shop</a>
-        <a href="/contact" class="nav-link">Contact</a>
-        <a href="https://careers.koenigsegg.com" class="nav-link" target="_blank">Careers</a>
-        <a href="https://news.cision.com/koenigsegg" class="nav-link" target="_blank">Press</a>
-        <a href="/factory-tours" class="nav-link">Factory tours</a>
+        ${navItems.map(item => `
+          <a href="${item.url}" class="nav-link"${item.isExternal ? ' target="_blank"' : ''}>${item.text}</a>
+        `).join('')}
       </nav>
     </div>
   `;
-  
+
   block.innerHTML = headerHTML;
   
   // Initialize hamburger menu

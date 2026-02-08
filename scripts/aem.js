@@ -624,12 +624,45 @@ function decorateBlocks(main) {
 }
 
 /**
- * Loads a block named 'header' into header
+ * Loads a block named 'nav' into header
  * @param {Element} header header element
  * @returns {Promise}
  */
 async function loadHeader(header) {
-  const headerBlock = buildBlock('header', '');
+  try {
+    // Try fetching nav content - try both /nav and /nav.plain.html
+    let resp = await fetch('/nav');
+    if (!resp.ok) {
+      resp = await fetch('/nav.plain.html');
+    }
+
+    if (resp.ok) {
+      const html = await resp.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+
+      // Convert nav content to block format
+      const rows = [];
+      doc.body.querySelectorAll(':scope > div').forEach(div => {
+        const cols = [];
+        div.querySelectorAll(':scope > div').forEach(col => {
+          cols.push(col);
+        });
+        if (cols.length > 0) {
+          rows.push(cols);
+        }
+      });
+
+      const headerBlock = buildBlock('nav', rows);
+      header.append(headerBlock);
+      decorateBlock(headerBlock);
+      return loadBlock(headerBlock);
+    }
+  } catch (error) {
+    console.error('Failed to load nav:', error);
+  }
+
+  // Fallback to empty block if fetch fails
+  const headerBlock = buildBlock('nav', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
   return loadBlock(headerBlock);

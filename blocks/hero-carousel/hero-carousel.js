@@ -5,11 +5,12 @@ export default function decorate(block) {
   const images = block.querySelectorAll('img');
   if (images.length === 0) return;
 
-  // Helper function to get high-res image URL
-  function getHighResUrl(imgSrc) {
+  // Helper function to get optimized image URL
+  function getOptimizedUrl(imgSrc, isFirstSlide = false) {
     const url = new URL(imgSrc, window.location.origin);
-    // Request larger image size for better quality
-    url.searchParams.set('width', '2400');
+    // Use responsive width based on viewport (2x for retina displays)
+    const optimalWidth = Math.min(window.innerWidth * 2, isFirstSlide ? 2400 : 1920);
+    url.searchParams.set('width', optimalWidth.toString());
     url.searchParams.set('format', 'webply');
     url.searchParams.set('optimize', 'medium');
     return url.toString();
@@ -19,15 +20,16 @@ export default function decorate(block) {
     <div class="hero-carousel-container">
       <div class="hero-slides">
         ${Array.from(images).map((img, i) => {
-          const highResSrc = getHighResUrl(img.src);
+          const optimizedSrc = getOptimizedUrl(img.src, i === 0);
+          const isFirstSlide = i === 0;
           return `
-          <div class="hero-slide ${i === 0 ? 'active' : ''}">
+          <div class="hero-slide ${isFirstSlide ? 'active' : ''}">
             <img
-              src="${highResSrc}"
+              src="${optimizedSrc}"
               alt="${img.alt || 'Koenigsegg'}"
-              loading="eager"
+              loading="${isFirstSlide ? 'eager' : 'lazy'}"
               decoding="auto"
-              fetchpriority="high">
+              ${isFirstSlide ? 'fetchpriority="high"' : ''}>
           </div>
         `;
         }).join('')}

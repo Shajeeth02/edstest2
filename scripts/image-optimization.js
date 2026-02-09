@@ -1,26 +1,33 @@
 /**
  * Image Optimization - Lazy Loading & WebP Support
+ * Optimized for performance with minimal overhead
  */
 
-export function optimizeImages() {
-  // Get all images
-  const images = document.querySelectorAll('img');
+const optimizedImages = new WeakSet();
 
-  images.forEach((img) => {
-    // Add lazy loading
-    if (!img.loading) {
-      img.loading = 'lazy';
-    }
+function optimizeImage(img) {
+  // Skip if already optimized
+  if (optimizedImages.has(img)) return;
 
-    // Add decoding async for better performance
-    if (!img.decoding) {
-      img.decoding = 'async';
-    }
+  // Mark as optimized
+  optimizedImages.add(img);
 
-    // Optimize image URLs with query parameters
-    if (img.src && img.src.includes('hlx.page')) {
-      const url = new URL(img.src);
+  // Skip if not loaded yet
+  if (!img.src) return;
 
+  // Check if image is from AEM/HLX domain
+  const isHlxImage = img.src.includes('hlx.page') ||
+                     img.src.includes('hlx.live') ||
+                     img.src.includes('aem.page') ||
+                     img.src.includes('aem.live');
+
+  if (!isHlxImage) return;
+
+  try {
+    const url = new URL(img.src);
+
+    // Only optimize if not already optimized
+    if (!url.searchParams.has('format') || !url.searchParams.has('width')) {
       // Set optimal format
       if (!url.searchParams.has('format')) {
         url.searchParams.set('format', 'webply');
@@ -40,27 +47,31 @@ export function optimizeImages() {
 
       img.src = url.toString();
     }
-  });
+  } catch (e) {
+    // Ignore invalid URLs
+  }
 }
 
-// Run on DOM content loaded
+export function optimizeImages() {
+  const images = document.querySelectorAll('img');
+  images.forEach(optimizeImage);
+}
+
+// Run once after page loads
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', optimizeImages);
+  document.addEventListener('DOMContentLoaded', optimizeImages, { once: true });
 } else {
   optimizeImages();
 }
 
-// Re-run when new images are added
+// Observe only for new images, not re-process existing ones
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     mutation.addedNodes.forEach((node) => {
       if (node.nodeName === 'IMG') {
-        optimizeImages();
+        optimizeImage(node);
       } else if (node.querySelectorAll) {
-        const imgs = node.querySelectorAll('img');
-        if (imgs.length > 0) {
-          optimizeImages();
-        }
+        node.querySelectorAll('img').forEach(optimizeImage);
       }
     });
   });

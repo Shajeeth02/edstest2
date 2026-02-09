@@ -1,4 +1,6 @@
-/* === HERO CAROUSEL CONTAINER === */
+/* === HERO CAROUSEL BLOCK - NESTED SYNTAX === */
+
+/* --- ZERO OUT EDS SPACING --- */
 .hero-carousel-container {
   padding: 0;
   margin: 0;
@@ -9,123 +11,128 @@
   margin: 0;
 }
 
-/* === HERO CAROUSEL === */
 .hero-carousel {
   width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
   margin: 0;
-}
 
-.hero-carousel-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-/* === HERO SLIDES === */
-.hero-slides {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.hero-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-
-  &.active {
-    opacity: 1;
-    z-index: 1;
-  }
-
-  img {
+  /* --- CAROUSEL CONTAINER --- */
+  .hero-carousel-container {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-}
-
-/* === HERO NAVIGATION === */
-.hero-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  width: 50px;
-  height: 50px;
-  font-size: 30px;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.4);
+    position: relative;
   }
 
-  &.prev {
-    left: 20px;
+  /* --- SLIDES WRAPPER --- */
+  .hero-slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 
-  &.next {
-    right: 20px;
+  /* --- SLIDE --- */
+  .hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
   }
 
-  /* === MOBILE (<768px) === */
-  @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+  /* --- NAVIGATION BUTTONS --- */
+  .hero-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
 
     &.prev {
-      left: 10px;
+      left: 20px;
     }
 
     &.next {
-      right: 10px;
+      right: 20px;
+    }
+  }
+
+  /* --- DOTS NAVIGATION --- */
+  .hero-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+
+    &.active {
+      background: rgba(255, 255, 255, 0.9);
+      width: 32px;
+      border-radius: 6px;
     }
   }
 }
 
-/* === HERO DOTS === */
-.hero-dots {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
+/* === MOBILE === */
+@media (max-width: 768px) {
+  .hero-carousel {
+    .hero-nav {
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  transition: all 0.3s;
-  padding: 0;
+      &.prev {
+        left: 10px;
+      }
 
-  &.active {
-    background: rgba(255, 255, 255, 0.9);
-    width: 32px;
-    border-radius: 6px;
+      &.next {
+        right: 10px;
+      }
+    }
   }
 }

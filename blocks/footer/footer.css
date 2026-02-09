@@ -1,4 +1,5 @@
-/* Footer */
+/* === FOOTER BLOCK - NESTED SYNTAX === */
+
 .footer {
   padding: 3rem 2rem;
   background: #0a0a0a;
@@ -11,14 +12,56 @@
     margin-bottom: 0 !important;
     padding-bottom: 3rem !important;
   }
+
+  /* --- FOOTER CONTAINER --- */
+  .footer-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  /* --- FOOTER WRAPPER --- */
+  .footer-wrapper {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* --- FOOTER NAV --- */
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    a {
+      color: #999;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  /* --- FOOTER COPYRIGHT --- */
+  .footer-copyright {
+    color: #666;
+    font-size: 0.85rem;
+  }
 }
 
+/* === FOOTER ELEMENT === */
 footer {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
 }
 
-/* Remove any potential extra space from parent containers */
+/* === BODY OVERRIDES === */
 body {
   & > footer,
   & > * > footer {
@@ -26,42 +69,4 @@ body {
     margin: 0 !important;
     padding: 0 !important;
   }
-}
-
-.footer-container {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-/* Remove any wrapper padding/margin */
-.footer-wrapper {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-.footer-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-
-  a {
-    color: #999;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-
-    &:hover {
-      color: #fff;
-    }
-  }
-}
-
-.footer-copyright {
-  color: #666;
-  font-size: 0.85rem;
 }

@@ -1,4 +1,4 @@
-/* Gallery */
+/* === GALLERY === */
 .gallery {
   padding: 4rem 2rem;
   background: #000;
@@ -16,6 +16,7 @@
   color: #fff;
 }
 
+/* === GALLERY ALBUMS === */
 .gallery-albums {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -26,26 +27,27 @@
   cursor: pointer;
   transition: transform 0.3s;
   position: relative;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  h3 {
+    color: #fff;
+    text-align: center;
+  }
 }
 
-.gallery-album:hover {
-  transform: scale(1.05);
-}
-
-.gallery-album img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  object-position: center;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.gallery-album h3 {
-  color: #fff;
-  text-align: center;
-}
-
+/* === GALLERY MODAL === */
 .gallery-modal {
   position: fixed;
   top: 0;
@@ -76,7 +78,9 @@
   z-index: 1001;
 }
 
-.modal-images img {
-  width: 100%;
-  margin-bottom: 1rem;
+.modal-images {
+  img {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }

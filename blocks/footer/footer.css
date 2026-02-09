@@ -5,12 +5,12 @@
   border-top: 1px solid #222;
   width: 100%;
   margin: 0;
-}
 
-/* Ensure no extra space after footer */
-.footer:last-child {
-  margin-bottom: 0 !important;
-  padding-bottom: 3rem !important;
+  /* Ensure no extra space after footer */
+  &:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 3rem !important;
+  }
 }
 
 footer {
@@ -19,11 +19,13 @@ footer {
 }
 
 /* Remove any potential extra space from parent containers */
-body > footer,
-body > * > footer {
-  display: block;
-  margin: 0 !important;
-  padding: 0 !important;
+body {
+  & > footer,
+  & > * > footer {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 }
 
 .footer-container {
@@ -46,17 +48,17 @@ body > * > footer {
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
-}
 
-.footer-nav a {
-  color: #999;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s;
-}
+  a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
 
-.footer-nav a:hover {
-  color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
 }
 
 .footer-copyright {

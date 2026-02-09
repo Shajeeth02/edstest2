@@ -1,4 +1,4 @@
-/* Video Block */
+/* === VIDEO BLOCK === */
 .video {
   width: 100%;
   padding: 0;
@@ -6,14 +6,28 @@
   background: #000;
 }
 
+/* === VIDEO CONTAINER === */
 .video-container {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   cursor: pointer;
+
+  &:hover {
+    .play-button {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+
+  /* === MOBILE (<768px) === */
+  @media (max-width: 768px) {
+    height: 70vh;
+  }
 }
 
+/* === VIDEO THUMBNAIL === */
 .video-thumbnail {
   width: 100%;
   height: 100%;
@@ -21,14 +35,15 @@
   display: block;
   transition: opacity 0.5s ease;
   background: #000;
+
+  /* Fallback for missing thumbnail */
+  &[src=""],
+  &:not([src]) {
+    display: none;
+  }
 }
 
-/* Fallback for missing thumbnail */
-.video-thumbnail[src=""],
-.video-thumbnail:not([src]) {
-  display: none;
-}
-
+/* === PLAY BUTTON === */
 .play-button {
   position: absolute;
   top: 50%;
@@ -45,23 +60,29 @@
   transition: all 0.3s ease;
   z-index: 2;
   pointer-events: none;
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 25px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 5px;
+  }
+
+  /* === MOBILE (<768px) === */
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+
+    &::after {
+      border-width: 12px 0 12px 20px;
+    }
+  }
 }
 
-.play-button::after {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 15px 0 15px 25px;
-  border-color: transparent transparent transparent #fff;
-  margin-left: 5px;
-}
-
-.video-container:hover .play-button {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%) scale(1.1);
-}
-
+/* === HOVER VIDEO & IFRAME === */
 .hover-video,
 .video-iframe {
   position: absolute;
@@ -77,19 +98,4 @@
 
 .video-iframe {
   border: none;
-}
-
-@media (max-width: 768px) {
-  .video-container {
-    height: 70vh;
-  }
-
-  .play-button {
-    width: 60px;
-    height: 60px;
-  }
-
-  .play-button::after {
-    border-width: 12px 0 12px 20px;
-  }
 }

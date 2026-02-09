@@ -35,8 +35,6 @@ export default function decorate(block) {
     return url.toString();
   }
 
-  console.log('🎥 Video Block: Initializing...');
-
   const rows = [...block.children];
 
   let videoUrl = '';
@@ -57,22 +55,15 @@ export default function decorate(block) {
     }
   });
 
-  console.log('🎥 Video URL:', videoUrl);
-  console.log('🎥 Thumbnail:', thumbnailSrc);
-
   // Check if thumbnail exists, if not try to get any image from the block
   if (!thumbnailSrc) {
     const anyImg = block.querySelector('img');
     if (anyImg) {
       thumbnailSrc = getHighResUrl(anyImg.src);
-      console.log('🎥 Found thumbnail from img tag:', thumbnailSrc);
-    } else {
-      console.warn('⚠️ No thumbnail found! Add a thumbnail image to your Video block in your EDS document.');
     }
   }
 
   const videoType = getVideoType(videoUrl);
-  console.log('🎥 Video Type:', videoType);
   let videoHTML = '';
 
   if (videoType === 'youtube') {
@@ -128,10 +119,7 @@ export default function decorate(block) {
   const iframe = block.querySelector('.video-iframe');
 
   if (container) {
-    console.log('🎥 Video Block: Event listeners attached');
-
     container.addEventListener('mouseenter', () => {
-      console.log('🎥 Mouse Enter: Playing video');
       if (thumbnail) thumbnail.style.opacity = '0';
       if (playButton) playButton.style.opacity = '0';
 
@@ -144,7 +132,6 @@ export default function decorate(block) {
     });
 
     container.addEventListener('mouseleave', () => {
-      console.log('🎥 Mouse Leave: Pausing video');
       if (thumbnail) thumbnail.style.opacity = '1';
       if (playButton) playButton.style.opacity = '1';
 
@@ -156,6 +143,4 @@ export default function decorate(block) {
       }
     });
   }
-
-  console.log('🎥 Video Block: Initialization complete');
 }

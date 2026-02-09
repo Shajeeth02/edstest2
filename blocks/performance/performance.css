@@ -1,0 +1,57 @@
+/* Performance */
+.performance {
+  padding: 6rem 3rem;
+  background: #000;
+  text-align: center
+}
+
+.performance-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.performance-heading {
+  font-family: roboto, sans-serif;
+  font-size: 1.85rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+  color: #999;
+}
+
+.performance-quote {
+  font-family: roboto, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.75;
+  color: #ccc;
+  margin: 0;
+}
+
+.performance-author {
+  display: block;
+  margin-top: 3rem;
+  font-family: roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+  color: #999;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .performance {
+    padding: 4rem 2rem;
+  }
+
+  .performance-quote {
+    font-size: 1.1rem;
+  }
+
+  .performance-author {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+}

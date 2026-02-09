@@ -1,0 +1,93 @@
+/* === GALLERY BLOCK - NESTED SYNTAX === */
+
+.gallery {
+  padding: 4rem 2rem;
+  background: #000;
+
+  /* --- GALLERY CONTAINER --- */
+  .gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- GALLERY TITLE --- */
+  .gallery-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #fff;
+  }
+
+  /* --- GALLERY ALBUMS --- */
+  .gallery-albums {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  /* --- GALLERY ALBUM --- */
+  .gallery-album {
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: relative;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    h3 {
+      color: #fff;
+      text-align: center;
+    }
+  }
+}
+
+/* === GALLERY MODAL === */
+.gallery-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  /* --- MODAL CONTENT --- */
+  .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  /* --- MODAL CLOSE --- */
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  /* --- MODAL IMAGES --- */
+  .modal-images {
+    img {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+}

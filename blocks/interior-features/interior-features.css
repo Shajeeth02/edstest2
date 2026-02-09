@@ -1,0 +1,94 @@
+/* Interior Features */
+.interior-features {
+  padding: 0;
+  margin: 0;
+  background: #000;
+}
+
+.interior-features-grid {
+  max-width: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.interior-feature-item {
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  border: none;
+}
+
+.interior-feature-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+
+.interior-feature-image img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.interior-feature-content {
+  padding: 4rem 5rem;
+}
+
+.interior-feature-title {
+  font-family: roboto, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2.5rem;
+}
+
+.interior-feature-description {
+  font-family: roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #ccc;
+}
+
+.interior-feature-description p {
+  margin-bottom: 1.5rem;
+}
+
+.interior-feature-description p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .interior-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .interior-feature-image {
+    height: 300px;
+  }
+
+  .interior-feature-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .interior-feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .interior-feature-description {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,56 @@
+/* Specifications */
+.specifications {
+  padding: 4rem 2rem;
+  background: #0a0a0a;
+}
+
+.specs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.specs-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.spec-value {
+  font-size: 4rem;
+  font-weight: 100;
+  color: #fff;
+}
+
+.spec-label {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 0.5rem;
+}
+
+.spec-sublabel {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 0.25rem;
+}
+
+.specs-link {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.specs-link:hover {
+  background: #fff;
+  color: #000;
+}

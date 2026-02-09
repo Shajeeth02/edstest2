@@ -1,0 +1,82 @@
+/* Design Philosophy */
+.design-philosophy {
+  padding: 0;
+  margin: 0;
+  background: #000;
+}
+
+.design-philosophy-container {
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.design-philosophy-content {
+  padding: 6rem 8rem;
+  background: #000;
+}
+
+.design-philosophy-heading {
+  font-family: roboto, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.design-philosophy-description {
+  font-family: roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #ccc;
+}
+
+.design-philosophy-description p {
+  margin-bottom: 1.5rem;
+}
+
+.design-philosophy-description p:last-child {
+  margin-bottom: 0;
+}
+
+.design-philosophy-description strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.design-philosophy-image {
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background: #000;
+}
+
+.design-philosophy-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .design-philosophy-content {
+    padding: 3rem 1.5rem;
+  }
+
+  .design-philosophy-heading {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .design-philosophy-description {
+    font-size: 0.9rem;
+  }
+
+  .design-philosophy-image {
+    height: 300px;
+  }
+}

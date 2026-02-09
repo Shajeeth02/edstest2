@@ -41,7 +41,7 @@ export default function decorate(block) {
   }
 
   const html = `
-    <div class="footer-container animate-fade-in">
+    <div class="footer-container">
       <nav class="footer-nav">
         ${menuLinks.map(link => `
           <a href="${link.url}">${link.text}</a>

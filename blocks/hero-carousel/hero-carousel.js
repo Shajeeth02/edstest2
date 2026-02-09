@@ -9,10 +9,13 @@ export default function decorate(block) {
   function getOptimizedUrl(imgSrc, isFirstSlide = false) {
     const url = new URL(imgSrc, window.location.origin);
     // Use responsive width based on viewport (2x for retina displays)
-    const optimalWidth = Math.min(window.innerWidth * 2, isFirstSlide ? 2400 : 1920);
+    // First slide: max 1800px for faster LCP
+    // Other slides: max 1600px (lazy loaded anyway)
+    const optimalWidth = Math.min(window.innerWidth * 2, isFirstSlide ? 1800 : 1600);
     url.searchParams.set('width', optimalWidth.toString());
     url.searchParams.set('format', 'webply');
-    url.searchParams.set('optimize', 'medium');
+    // First slide uses high optimization for faster LCP
+    url.searchParams.set('optimize', isFirstSlide ? 'high' : 'medium');
     return url.toString();
   }
 

@@ -29,6 +29,22 @@ export default function decorate(block) {
     }
   });
 
+  // Fallback navigation items if none were loaded
+  if (navItems.length === 0) {
+    navItems.push(
+      { text: 'Megacars', url: '#track-legend', isExternal: false },
+      { text: 'Technology', url: '#features', isExternal: false },
+      { text: 'About', url: '#specs', isExternal: false },
+      { text: 'History', url: '#performance', isExternal: false },
+      { text: 'Dealer locator', url: '#', isExternal: false },
+      { text: 'Shop', url: '#', isExternal: false },
+      { text: 'Contact', url: '#', isExternal: false },
+      { text: 'Careers', url: '#', isExternal: false },
+      { text: 'Press', url: '#', isExternal: false },
+      { text: 'Factory tours', url: '#', isExternal: false }
+    );
+  }
+
   const headerHTML = `
     <div class="header-container">
       <a href="/" class="header-logo">

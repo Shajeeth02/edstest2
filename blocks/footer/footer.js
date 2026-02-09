@@ -1,11 +1,15 @@
 /**
  * Footer Block
  */
+
 export default function decorate(block) {
+  console.log('Footer decorate called');
   const rows = [...block.children];
+  console.log('Footer rows:', rows.length);
   const menuLinks = [];
   let copyright = '';
-  
+
+  // Parse rows from footer document
   rows.forEach((row) => {
     const cells = [...row.children];
     if (cells.length >= 3) {
@@ -19,8 +23,24 @@ export default function decorate(block) {
       }
     }
   });
-  
-  block.innerHTML = `
+
+  console.log('Menu links before fallback:', menuLinks.length);
+
+  // Fallback for localhost when footer document doesn't load
+  if (menuLinks.length === 0) {
+    console.log('Using fallback footer data');
+    menuLinks.push(
+      { text: 'Megacars', url: '/megacars' },
+      { text: 'Technology', url: '/technology' },
+      { text: 'About', url: '/about' },
+      { text: 'History', url: '/history' },
+      { text: 'Dealer locator', url: '/dealer-locator' },
+      { text: 'Shop', url: 'https://gear.koenigsegg.com' }
+    );
+    copyright = '© 2024 Koenigsegg. All rights reserved.';
+  }
+
+  const html = `
     <div class="footer-container animate-fade-in">
       <nav class="footer-nav">
         ${menuLinks.map(link => `
@@ -30,4 +50,8 @@ export default function decorate(block) {
       ${copyright ? `<p class="footer-copyright">${copyright}</p>` : ''}
     </div>
   `;
+
+  console.log('Setting footer HTML:', html.substring(0, 100) + '...');
+  block.innerHTML = html;
+  console.log('Footer decoration complete');
 }

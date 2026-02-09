@@ -15,8 +15,9 @@ import {
 } from './aem.js';
 
 import { initScrollAnimations } from './animations.js';
+import './image-optimization.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero-carousel', 'hero']; // LCP blocks load with high priority
 
 /**
  * Builds hero block and prepends to main in a new section.

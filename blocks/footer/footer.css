@@ -57,16 +57,6 @@
 
 /* === FOOTER ELEMENT === */
 footer {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* === BODY OVERRIDES === */
-body {
-  & > footer,
-  & > * > footer {
-    display: block;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
+  margin: 0;
+  padding: 0;
 }

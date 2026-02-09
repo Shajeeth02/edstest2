@@ -45,4 +45,12 @@ export default function decorate(block) {
       ${copyright ? `<p class="footer-copyright">${copyright}</p>` : ''}
     </div>
   `;
+
+  // Trigger fade-in animation
+  setTimeout(() => {
+    const container = block.querySelector('.footer-container');
+    if (container) {
+      container.classList.add('is-visible');
+    }
+  }, 100);
 }
